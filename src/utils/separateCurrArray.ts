@@ -37,6 +37,6 @@ export function separateCurrArray(currencyArr: currencyObject[]) {
     nominal: 1,
     name: 'Российсикй рубль',
     tableValue: 1,
-    value: '1', charCode: 'RUB', difference: ''});
+    value: 1, charCode: 'RUB', difference: ''});
   return result;
 }

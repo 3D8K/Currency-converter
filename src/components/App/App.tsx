@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     Promise.resolve(dispatch(fetchCurrency())).then((result: any) => {
       const storeCheck = store.getState();
-      if (!storeCheck.bottomSelectorOne.value) {
+      if (!storeCheck.firstLoading.status) {
         dispatch(defCurrencyPair(result));
       }
     });

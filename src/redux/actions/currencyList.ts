@@ -1,10 +1,11 @@
 import axios from 'axios';
 import {FETCH_CURRENCY_SUCCESS, FETCH_CURRENCY_ERROR,
-  TOP_SELECTOR_ONE, BOTTOM_SELECTOR_ONE}
+  ADD_CURRENCY_PAIR, LOADING_COMPLETE}
   from '../reducers/constants';
 import {Dispatch} from 'react';
 import {currencyArrAction} from '../reducers/currencyReducer/currencyReducer';
 import {separateCurrArray} from '../../utils/separateCurrArray';
+import {v1 as uuid} from 'uuid';
 
 export function fetchCurrency() {
   return async (dispatch: Dispatch<currencyArrAction>) => {
@@ -23,11 +24,14 @@ export function fetchCurrency() {
 
 export function defCurrencyPair(currencyData: any) {
   return async (dispatch: any) => {
-    const defaultTop = currencyData.find((currency: any) =>
+    const defaultUsd = currencyData.find((currency: any) =>
       currency.charCode === 'USD')?.value;
-    const defaultBottom = currencyData.find((currency: any) =>
+    const defaultEur = currencyData.find((currency: any) =>
       currency.charCode === 'EUR')?.value;
-    dispatch({type: TOP_SELECTOR_ONE, payload: defaultTop});
-    dispatch({type: BOTTOM_SELECTOR_ONE, payload: defaultBottom});
+    dispatch({type: ADD_CURRENCY_PAIR, payload:
+          {topCurrency: defaultUsd, bottomCurrency: 1, id: uuid()}});
+    dispatch({type: ADD_CURRENCY_PAIR, payload:
+          {topCurrency: defaultEur, bottomCurrency: 1, id: uuid()}});
+    dispatch({type: LOADING_COMPLETE, payload: ''});
   };
 }

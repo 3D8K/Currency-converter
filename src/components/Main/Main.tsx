@@ -8,9 +8,9 @@ import {LoadingOutlined} from '@ant-design/icons';
 
 function Main() {
   const flag = useSelector(
-      (state: any) => state.bottomSelectorOne);
+      (state: any) => state.firstLoading.status);
   const loadingIcon = <LoadingOutlined style={{fontSize: 100}} spin />;
-  if (!flag.value) {
+  if (!flag) {
     return <Spin indicator={loadingIcon} style={{margin: 'auto'}}/>;
   } else {
     return (

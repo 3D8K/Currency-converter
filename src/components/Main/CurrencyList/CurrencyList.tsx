@@ -39,7 +39,10 @@ function CurrencyList() {
   return <Table className='CurrencyList-div'
     columns={columns}
     size={'small'}
-    dataSource={data}/>;
+    pagination={false}
+    dataSource={data}
+    rowKey='charCode'
+  />;
 }
 
 export default CurrencyList;
